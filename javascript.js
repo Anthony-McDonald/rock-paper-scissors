@@ -19,71 +19,91 @@ function playRound(playerSelection, computerSelection) {
 
     let concentation = playerSelection + computerSelection
 
-    let winMessage = "You Win! " + playerSelection + " beats " + computerSelection;
-    let drawMessage = "You Draw! " + playerSelection + " draws with " + computerSelection;
-    let loseMessage = "You Lose! " + computerSelection + " beats " + playerSelection;
-
     switch(concentation) {
         case "RockScissors":
-            return winMessage;
+            addpoint("player");
+            return;
         case "PaperRock":
-            return winMessage;
+            addpoint("player");
+            return;
         case "ScissorsPaper":
-            return winMessage;
+            addpoint("player");
+            return;
         case "ScissorsRock":
-            return loseMessage;
+            addpoint("computer");
+            return;
         case "RockPaper":
-            return loseMessage;
+            addpoint("computer");
+            return;
         case "PaperScissors":
-            return loseMessage;
-        case "RockRock":
-            return drawMessage
-        case "RockRock":
-            return drawMessage
-        case "PaperPaper":
-            return drawMessage
-        case "ScissorsScissors":
-            return drawMessage
-
-        default:
-            return "Please enter: Rock, Paper or Scissors"
-
+            addpoint("computer");
+            return;
     }
 
 }
 
-function game() {
-    playerWins = 0
-    compWins = 0
-    for (let i = 0; i < 5; i++) {
-        let input = prompt("Rock, Paper or Scissors?");
-        let result = playRound(input, getComputerChoice());
-        console.log(result);
+function addpoint(winner) {
+    const player_score_field = document.querySelector('.player_score')
+    const computer_score_field = document.querySelector('.computer_score')
 
-        let checker = result.slice(4, 7)
+// Takes field and removes score to return just the number in integer form
+    let player_score = parseInt(player_score_field.innerHTML.replace(/[^0-9\.]+/g, ""));
+    let computer_score = parseInt(computer_score_field.innerHTML.replace(/[^0-9\.]+/g, ""));
 
-        if (checker == "Win") {
-            playerWins++;
-        }
-        if (checker == "Los") {
-            compWins++;
-        }
-        if (checker == "se ") {
-            i--;
-        }
-
+    if (winner == "player") {
+        player_score += 1;
+        player_score_field.innerHTML = "Player: " + player_score;
+        
+    } else if (winner == "computer") {
+        computer_score += 1;
+        computer_score_field.innerHTML = "Computer: " + computer_score;
     }
-    console.log("total player wins = " + playerWins);
-    console.log("total comp wins = " + compWins);
+    
+    const win_field = document.querySelector(".winner_declarer")
 
-    if (playerWins > compWins)  {
-        console.log("You win the best of 5!")
-    } else if (compWins > playerWins) {
-        console.log("You lose the best of 5!")
-    } else {
-        console.log("The best of 5 ended in a draw!")
+    if (player_score == 5) {
+        console.log("player score is 5")
+        win_field.innerHTML = "You won you smurf, refresh to reset";
+    } else if (computer_score == 5) {
+        win_field.innerHTML = "Lost to a computer, lmao, refresh before anyone notices"
     }
+
 }
+
+
+// function game() {
+//     playerWins = 0
+//     compWins = 0
+//     for (let i = 0; i < 5; i++) {
+//         let input = prompt("Rock, Paper or Scissors?");
+//         let result = playRound(input, getComputerChoice());
+//         console.log(result);
+
+//         let checker = result.slice(4, 7)
+
+//         if (checker == "Win") {
+//             playerWins++;
+//         }
+//         if (checker == "Los") {
+//             compWins++;
+//         }
+//         if (checker == "se ") {
+//             i--;
+//         }
+
+//     }
+//     console.log("total player wins = " + playerWins);
+//     console.log("total comp wins = " + compWins);
+
+//     if (playerWins > compWins)  {
+//         console.log("You win the best of 5!")
+//     } else if (compWins > playerWins) {
+//         console.log("You lose the best of 5!")
+//     } else {
+//         console.log("The best of 5 ended in a draw!")
+//     }
+// }
+
 
 function wordFixer(word) {
     word = word.toLowerCase();
@@ -91,5 +111,23 @@ function wordFixer(word) {
 
 }
 
+const rock = document.querySelector('.rock');
+const paper = document.querySelector('.paper');
+const scissors = document.querySelector('.scissors');
+
+rock.addEventListener('click', () => {
+  playRound("rock", getComputerChoice())
+  console.log('rock');
+});
+
+paper.addEventListener('click', () => {
+  playRound('paper', getComputerChoice())
+  console.log('paper');
+});
+
+scissors.addEventListener('click', () => {
+  playRound('scissors', getComputerChoice())
+  console.log('scissors');
+});
 
 game();

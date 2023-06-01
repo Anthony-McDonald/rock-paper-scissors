@@ -1,0 +1,56 @@
+
+
+.header {
+    background-color: lightblue;
+    color: blue;
+    display: flex;
+    justify-content: center;
+    padding: 0px;
+    font-family: Lobster;
+}
+
+.demand {
+    display: flex;
+    font-weight: bold;
+    justify-content: center;
+    font-size: 50px;
+    font-family: Inconsolata;
+
+}
+
+.seperator {
+    display: flex;
+    justify-content: center;
+    height: 200px;
+    margin: 10px;
+}
+
+.option_container {
+    border: lightblue 5px solid;
+    display: flex;
+    justify-content: space-around;
+    
+}
+
+.select_img {
+    height:220px;
+    width: 220px;
+}
+
+.score_box {
+    border: black 5px solid;
+    display: flex;
+    justify-content: space-around;
+    font-family: Inconsolata;
+    font-size: 50px;
+    font-weight: bold;
+    
+}
+
+.winner_declarer {
+    display: flex;
+    justify-content: center;
+    font-family: Inconsolata;
+    font-size: 30px;
+    font-weight: bold;
+}
